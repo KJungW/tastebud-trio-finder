@@ -1,15 +1,23 @@
 
 import React, { useState } from 'react';
-import { Menu } from 'lucide-react';
+import { Menu, RefreshCw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/hooks/use-toast';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 interface HeaderProps {
   shareLink?: string;
+  onUpdate?: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ shareLink }) => {
+const Header: React.FC<HeaderProps> = ({ shareLink, onUpdate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUpdateHighlighted, setIsUpdateHighlighted] = useState(false);
 
   const handleShareLink = () => {
     if (shareLink) {
@@ -18,7 +26,24 @@ const Header: React.FC<HeaderProps> = ({ shareLink }) => {
         title: "링크가 복사되었습니다!",
         description: "친구들에게 링크를 공유해보세요.",
       });
+      // 업데이트 버튼 강조 효과 활성화
+      setIsUpdateHighlighted(true);
     }
+  };
+
+  const handleUpdate = () => {
+    // 강조 효과 제거
+    setIsUpdateHighlighted(false);
+    
+    // 부모 컴포넌트의 업데이트 함수 호출
+    if (onUpdate) {
+      onUpdate();
+    }
+    
+    toast({
+      title: "업데이트 완료!",
+      description: "새로운 내용을 확인해보세요.",
+    });
   };
 
   return (
@@ -33,12 +58,39 @@ const Header: React.FC<HeaderProps> = ({ shareLink }) => {
 
           <div className="flex items-center space-x-4">
             {shareLink && (
-              <Button
-                onClick={handleShareLink}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition-colors"
-              >
-                메뉴컷 링크 복사
-              </Button>
+              <>
+                <Button
+                  onClick={handleShareLink}
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition-colors"
+                >
+                  메뉴컷 링크 복사
+                </Button>
+                <TooltipProvider>
+                  <Tooltip delayDuration={0}>
+                    <TooltipTrigger asChild>
+                      <Button
+                        onClick={handleUpdate}
+                        variant="outline"
+                        className={`border-gray-300 hover:bg-gray-50 text-gray-700 px-6 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 ${
+                          isUpdateHighlighted 
+                            ? 'border-orange-500 bg-orange-50 shadow-lg ring-2 ring-orange-200' 
+                            : 'border-gray-300'
+                        }`}
+                      >
+                        <RefreshCw size={16} className={isUpdateHighlighted ? 'text-orange-500' : 'text-gray-700'} />
+                        <span className={isUpdateHighlighted ? 'text-orange-600 font-medium' : 'text-gray-700'}>
+                          제외 메뉴 업데이트
+                        </span>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs bg-gray-900 text-white border-gray-700 shadow-xl">
+                      <p className="text-sm leading-relaxed">
+                        링크를 통해 다른 사람들이 제외한 메뉴 정보를 적용합니다.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </>
             )}
             
             <button

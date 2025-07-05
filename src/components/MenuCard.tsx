@@ -18,34 +18,41 @@ const MenuCard: React.FC<MenuCardProps> = ({
   isExcluded,
   onToggle
 }) => {
+  const handleCheckboxClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // 이벤트 버블링 방지
+    onToggle(id);
+  };
+
   return (
     <div
-      onClick={() => onToggle(id)}
       className={`
-        p-4 rounded-lg border-2 cursor-pointer transition-all duration-200 hover:shadow-md
+        p-4 rounded-lg border-2 transition-all duration-200
         ${isExcluded 
-          ? 'border-red-300 bg-red-50 opacity-60' 
-          : 'border-gray-200 bg-white hover:border-orange-300'
+          ? 'border-gray-300 bg-gray-100 opacity-50' 
+          : 'border-gray-200 bg-white'
         }
       `}
     >
       <div className="flex items-center space-x-3">
         <div className="text-2xl">{icon}</div>
         <div className="flex-1">
-          <h3 className={`font-medium ${isExcluded ? 'text-gray-500 line-through' : 'text-gray-800'}`}>
+          <h3 className={`font-medium ${isExcluded ? 'text-gray-400 line-through' : 'text-gray-800'}`}>
             {name}
           </h3>
           <p className={`text-xs ${isExcluded ? 'text-gray-400' : 'text-gray-600'}`}>
             {description}
           </p>
         </div>
-        <div className={`
-          w-6 h-6 rounded-full border-2 flex items-center justify-center
-          ${isExcluded 
-            ? 'border-red-400 bg-red-400' 
-            : 'border-gray-300 hover:border-orange-400'
-          }
-        `}>
+        <div 
+          onClick={handleCheckboxClick}
+          className={`
+            w-6 h-6 rounded-full border-2 flex items-center justify-center cursor-pointer transition-all duration-200
+            ${isExcluded 
+              ? 'border-gray-400 bg-gray-400 hover:bg-gray-500 hover:border-gray-500' 
+              : 'border-gray-300 hover:border-orange-400 hover:bg-orange-50'
+            }
+          `}
+        >
           {isExcluded && (
             <span className="text-white text-xs">✕</span>
           )}

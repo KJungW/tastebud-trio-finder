@@ -24,6 +24,25 @@ const Index = () => {
     );
   };
 
+  const handleUpdate = () => {
+    // 랜덤하게 1~2개의 메뉴를 비활성화
+    const allMenus = ['korean', 'chinese', 'japanese', 'western', 'thai', 'indian', 'mexican', 'fast'];
+    const activeMenus = allMenus.filter(menu => !excludedMenus.includes(menu));
+    
+    if (activeMenus.length > 0) {
+      const numToExclude = Math.min(Math.floor(Math.random() * 2) + 1, activeMenus.length);
+      const menusToExclude = [];
+      
+      // 랜덤하게 메뉴 선택
+      const shuffled = [...activeMenus].sort(() => 0.5 - Math.random());
+      for (let i = 0; i < numToExclude; i++) {
+        menusToExclude.push(shuffled[i]);
+      }
+      
+      setExcludedMenus(prev => [...prev, ...menusToExclude]);
+    }
+  };
+
   if (!isSessionActive) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
@@ -66,7 +85,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header shareLink={shareLink} />
+      <Header shareLink={shareLink} onUpdate={handleUpdate} />
       <div className="flex h-[calc(100vh-4rem)]">
         <MapSection excludedMenus={excludedMenus} />
         <MenuPanel 
