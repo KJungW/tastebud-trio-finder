@@ -32,6 +32,11 @@ const Header: React.FC<HeaderProps> = ({ shareLink, onUpdate }) => {
   };
 
   const handleUpdate = () => {
+    // 강조 상태가 아닐 때는 아무것도 하지 않음
+    if (!isUpdateHighlighted) {
+      return;
+    }
+    
     // 강조 효과 제거
     setIsUpdateHighlighted(false);
     
@@ -71,14 +76,14 @@ const Header: React.FC<HeaderProps> = ({ shareLink, onUpdate }) => {
                       <Button
                         onClick={handleUpdate}
                         variant="outline"
-                        className={`border-gray-300 hover:bg-gray-50 text-gray-700 px-6 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 ${
+                        className={`px-6 py-2 rounded-lg transition-all duration-300 flex items-center space-x-2 ${
                           isUpdateHighlighted 
-                            ? 'border-orange-500 bg-orange-50 shadow-lg ring-2 ring-orange-200' 
-                            : 'border-gray-300'
+                            ? 'border-orange-500 bg-orange-50 shadow-lg ring-2 ring-orange-200 hover:bg-orange-100 cursor-pointer' 
+                            : 'border-gray-300 bg-gray-100 text-gray-400 cursor-not-allowed'
                         }`}
                       >
-                        <RefreshCw size={16} className={isUpdateHighlighted ? 'text-orange-500' : 'text-gray-700'} />
-                        <span className={isUpdateHighlighted ? 'text-orange-600 font-medium' : 'text-gray-700'}>
+                        <RefreshCw size={16} className={isUpdateHighlighted ? 'text-orange-500' : 'text-gray-400'} />
+                        <span className={isUpdateHighlighted ? 'text-orange-600 font-medium' : 'text-gray-400'}>
                           제외 메뉴 업데이트
                         </span>
                       </Button>
