@@ -1,4 +1,4 @@
-# 메뉴컷 프로토타입
+# 메뉴컷 프로토타입 (https://tastebud-trio-finder.lovable.app)
 
 ## 서비스 간략 소개
 
