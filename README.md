@@ -1,73 +1,52 @@
-# Welcome to your Lovable project
+# 메뉴컷 프로토타입
 
-## Project info
+## 서비스 간략 소개
 
-**URL**: https://lovable.dev/projects/97e801d0-d221-478f-a0f3-0a1f5dd6153b
+### 페인 포인트
 
-## How can I edit this code?
+- 다른 사람들과 밥을 먹을때 메뉴를 정하기 힘들다.
 
-There are several ways of editing your application.
+### 중심 목표
 
-**Use Lovable**
+- 같이 밥먹는 사람들이 싫어하는 메뉴를 제외한 식사 메뉴를 간편하게 확인하고 싶음
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/97e801d0-d221-478f-a0f3-0a1f5dd6153b) and start prompting.
+### 핵심 기능
 
-Changes made via Lovable will be committed automatically to this repo.
+- 다른 사람들이 싫어하는 메뉴를 링크를 통해 간편하게 종합한다
 
-**Use your preferred IDE**
+### 들어가며
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- 우선 공지에 따라서 자신을 페르소나로 프로토타입을 작성해보았습니다!
+- 하나의 페인포인트("다른 사람들과 밥을 먹을때 메뉴를 정하기 힘들다.")에 집중해서 하나의 핵심 기능(”다른 사람들이 싫어하는 메뉴를 간편하게 종합한다.”)에 중점을 두고 만들어보았습니다.
+- 우선 1차 데모를 위해 최대한 제가 생각한 핵심적인 부분만을 구현해보았습니다!
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 페르소나와 시나리오
 
-Follow these steps:
+### 첫미팅 랜디
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- 이름: 랜디  
+- 나이: 27  
+- 성별: 남  
+- 상황: 주변 식당정보를 모르는 상태에서 처음 만나는 사람들과 점심을 정하기 위해 메뉴를 종합해야 한다.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 사용자 시나리오
 
-# Step 3: Install the necessary dependencies.
-npm i
+랜디는 처음 와보는 장소에서 첫 사람들과 만나 점심을 먹어야 한다. 그런데 싫어하는 메뉴를 일일이 물어보고 종합하여 메뉴를 정하는 것이 불편하고 번거롭다. 그리고 메뉴를 정한 후에도 주변에 아는 식당 정보가 하나도 없다. 그래서 랜디는 메뉴컷을 통해 사람들이 싫어하는 메뉴를 쉽게 종합하고 메뉴에 따른 주변 식당 정보를 간단하게 살펴보려고 한다. 랜디는 메뉴컷에서 만들어준 메뉴 제외 링크를 사람들에게 보내고, 사람들은 해당 링크에 접속해서 자신이 싫어하는 메뉴를 제외한다. 결과적으로 랜디는 메뉴컷을 통해 사람들이 싫어하는 메뉴가 제외된 주변 식당 정보를 확인하고 그곳 중 가까운 곳을 하나 골라 사람들과 맛잇는 점심식사를 했다!
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### 사용자 스토리
 
-**Edit a file directly in GitHub**
+- 웹버시스 접속  
+- 새로운 메뉴컷 시작 버튼 클릭  
+- 왼편에는 현재 위치 주변 식당들이 표시된 지도가 출력되고, 오른편에서는 가능한 메뉴들이 보인다.  
+- 오른편 위의 메뉴컷 링크 버튼을 클릭하면 링크가 뜬다.  
+- 머핀이는 링크를 복사해 슬랙 채널로 링크를 공유한다.  
+- 같이 밥먹는 사람들은 링크로 들어가 자신이 먹기 싫은 메뉴를 제외하고 완료 버튼을 클릭한다.  
+- 같이 밥먹는 사람들이 링크를 통한 메뉴 제외를 하고 나면 머핀이의 화면은 화면 업데이트 알림이 뜬다.  
+- 화면 업데이트를 수행하면 제외된 메뉴와 제외되지 않은 메뉴 정보가 오른편에 뜨고, 왼편 지도에는 제외된 메뉴를 배제한 식당들이 표시된다.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 프로토타입 제작 후 느꼈던 점
 
-**Use GitHub Codespaces**
+### 개인적으로 느꼈던 인사이트
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/97e801d0-d221-478f-a0f3-0a1f5dd6153b) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- 개인적으로 세부적인 음식 단위로 제외를 하지 않는 편이 오히려 사용자들이 서비스를 더욱 간편하게 이용할 수 있을 것 같다는 생각이 들었습니다. (ex. {비빔밥, 불고기, 짜장면, 짬뽕 ...} => {한식, 중식, 일식})  
+- 메뉴 리스트는 배달의 민족과 같은 배달앱에서 실제 사용하고 있는 실용적인 메뉴 리스트를 활용하면 좋지 않을까하는 아이디어가 떠올랐습니다!
